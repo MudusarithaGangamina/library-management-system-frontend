@@ -1,5 +1,4 @@
-export interface BookDetailsDto{
-    id: number,
+export interface BookDto{
     title: string,
     author: string,
     imageUrl?: string,
