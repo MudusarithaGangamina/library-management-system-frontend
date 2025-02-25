@@ -4,7 +4,7 @@ import logo from "../assets/vite.svg";
 import { useState } from "react";
 import axios from "axios";
 
-const SignIn = ({ setIsAuthenticated }: { setIsAuthenticated: (value: boolean) => void }) => {
+const SignIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const SignIn = ({ setIsAuthenticated }: { setIsAuthenticated: (value: boolean) =
       localStorage.setItem("lastName", response.data.lastname);
 
     
-      setIsAuthenticated(true);
+      
 
       //Redirect to ManageBooks after login
       navigate("/");

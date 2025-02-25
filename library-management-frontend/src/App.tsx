@@ -6,17 +6,10 @@ import SignUp from "./pages/SignUp";
 import ManageBooks from "./pages/ManageBooks";
 import AddBook from "./pages/AddBook";
 import PrivateRoute from "./middleware/PrivateRoute";
-import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token);
-  }, []);
 
   return (
     
@@ -25,7 +18,7 @@ function App() {
       <ToastContainer />
         <Routes>
           {/* Public Routes */}
-          <Route path="/login" element={<SignIn setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path="/login" element={<SignIn  />} />
           <Route path="/register" element={<SignUp />} />
           
 
