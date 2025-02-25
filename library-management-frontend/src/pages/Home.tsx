@@ -3,6 +3,9 @@ import loginBg from "../assets/login.jpg";
 import logo from "../assets/logo.png";
 
 const Home = () => {
+  const firstName = localStorage.getItem("firstName");
+  const lastName = localStorage.getItem("lastName");
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -16,7 +19,7 @@ const Home = () => {
     >
       <div className="w-full max-w-lg p-10 shadow-lg rounded bg-white xs:mx-5 lg:mx-0 text-center grid items-center justify-center gap-5">
         <h1>
-          Hi, <span className="font-semibold">Mudusaritha Gangamina</span>
+          Hi, <span className="font-semibold">{firstName} {lastName}</span>
         </h1>
         <img src={logo} alt="" className="w-32 h-32 mx-auto" />
         <p className="text-xl font-medium">

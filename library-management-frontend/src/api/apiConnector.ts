@@ -3,11 +3,20 @@ import { BookDetailsDto } from "../models/bookDetailsDto";
 import {API_BASE_URL} from "../../config"
 import { BookDto } from "../models/bookDto";
 
+const getToken = (): string | null => {
+    return localStorage.getItem('token'); // Example using local storage
+};
+
 const apiConnector = {
     getBooks: async(): Promise<BookDetailsDto[]> => {
         try{
+            const token = getToken();
             const response: AxiosResponse<BookDetailsDto[]> =
-                await axios.get(`${API_BASE_URL}/Books`);
+                await axios.get(`${API_BASE_URL}/Books`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
                 console.log('API Response:', response.data);
                 return response.data;
 
@@ -19,7 +28,12 @@ const apiConnector = {
 
     createBook: async (book: BookDto): Promise<void> => {
         try{
-            await axios.post<number>(`${API_BASE_URL}/Books`, book);
+            const token = getToken();
+            await axios.post<number>(`${API_BASE_URL}/Books`, book, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
         }catch(error){
             console.log(error);
             throw error;
@@ -28,7 +42,12 @@ const apiConnector = {
 
     editBook: async (bookId: number, book: BookDto): Promise<void> => {
         try{
-            await axios.put<number>(`${API_BASE_URL}/Books/${bookId}`, book);
+            const token = getToken();
+            await axios.put<number>(`${API_BASE_URL}/Books/${bookId}`, book, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
         }catch(error){
             console.log(error);
             throw error;
@@ -37,7 +56,12 @@ const apiConnector = {
 
     deleteBook: async (bookId: number): Promise<void> => {
         try{
-            await axios.delete<number>(`${API_BASE_URL}/Books/${bookId}`);
+            const token = getToken();
+            await axios.delete<number>(`${API_BASE_URL}/Books/${bookId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
         }catch(error){
             console.log(error);
             throw error;
