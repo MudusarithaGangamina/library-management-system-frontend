@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/login.jpg";
+import logo from "../assets/vite.svg";
 import { useState } from "react";
 import axios from "axios";
 
@@ -41,6 +42,10 @@ const SignUp = () => {
             alt=""
             className="object-cover w-full h-full max-h-screen max-w-full"
           />
+          <img
+            src={logo}
+            className="absolute w-96"
+            />
         </div>
         <div className="flex items-center justify-center bg-amber-100">
           <form onSubmit={handleSubmit} className="w-full max-w-md p-8 shadow-lg rounded bg-white xs:mx-5 lg:mx-0">

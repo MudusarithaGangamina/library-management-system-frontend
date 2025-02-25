@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-//import { bookList } from "../constants";
 import noBook from "../assets/nobook.png";
 import UpdateBookModal from "../components/UpdateBookModal";
 import DeleteBookModal from "../components/DeleteBookModal";
@@ -15,7 +14,6 @@ const ManageBooks = () => {
 
   const fetchData = async () => {
     const fetchedBooks = await apiConnector.getBooks();
-    console.log('Fetched Books:', fetchedBooks);
     setBooks(fetchedBooks);
 }
 
@@ -36,10 +34,20 @@ const ManageBooks = () => {
     setBookToView(book);
   };
 
+  const isValidUrl = (url?: string): url is string => {
+    if (!url) return false; // Return false if url is undefined or empty
+    try {
+      new URL(url);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
   return (
     <>
-      <div className="overflow-x-auto xs:px-5 sm:px-10 sd:px-16 xl:px-24 mt-5">
-        <table className="table">
+      <div className="overflow-x-auto xs:px-5 sm:px-10 sd:px-16 xl:px-24 py-5 bg-amber-500 min-h-screen">
+       <table className="table table-zebra bg-white">
           <thead>
             <tr>
               <th>ID</th>
@@ -58,7 +66,7 @@ const ManageBooks = () => {
                     <div className="flex items-center space-x-3">
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
-                          <img src={book.imageUrl ? book.imageUrl : noBook} />
+                          <img src={isValidUrl(book.imageUrl) ? book.imageUrl : noBook} />
                         </div>
                       </div>
                       <div>
@@ -94,7 +102,7 @@ const ManageBooks = () => {
               ))
             ) : (
               <tr>
-                <td colSpan={5} className="text-center">
+                <td colSpan={5} className="text-center border-hidden">
                   No Books Available.
                 </td>
               </tr>

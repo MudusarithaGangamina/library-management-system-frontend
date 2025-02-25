@@ -14,7 +14,7 @@ const AddBook = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleAddBook = async (newBook: BookDto) => { // Update book list
+  const handleAddBook = async (newBook: BookDto) => { 
     const addedBook = await apiConnector.createBook(newBook);
     return addedBook;
   };
@@ -22,8 +22,8 @@ const AddBook = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    await handleAddBook(formData); // Pass new book to parent component
-    setFormData({ title: "", author: "", description: "",imageUrl:"" }); // Reset form
+    await handleAddBook(formData); 
+    setFormData({ title: "", author: "", description: "",imageUrl:"" }); 
 
   }
 

@@ -2,9 +2,10 @@ import axios, { AxiosResponse } from "axios";
 import { BookDetailsDto } from "../models/bookDetailsDto";
 import {API_BASE_URL} from "../../config"
 import { BookDto } from "../models/bookDto";
+import { toast } from "react-toastify";
 
 const getToken = (): string | null => {
-    return localStorage.getItem('token'); // Example using local storage
+    return localStorage.getItem('token');
 };
 
 const apiConnector = {
@@ -17,7 +18,6 @@ const apiConnector = {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log('API Response:', response.data);
                 return response.data;
 
         }catch(error){
@@ -34,8 +34,10 @@ const apiConnector = {
                     Authorization: `Bearer ${token}`,
                 },
             });
+            toast.success("Book created successfully!");
         }catch(error){
             console.log(error);
+            toast.error("Error creating book!");
             throw error;
         }
     },
@@ -48,8 +50,10 @@ const apiConnector = {
                     Authorization: `Bearer ${token}`,
                 },
             });
+            toast.success("Book updated successfully!"); 
         }catch(error){
             console.log(error);
+            toast.error("Error updating book!");
             throw error;
         }
     },
@@ -62,8 +66,10 @@ const apiConnector = {
                     Authorization: `Bearer ${token}`,
                 },
             });
+            toast.success("Book deleted successfully!");
         }catch(error){
             console.log(error);
+            toast.error("Error deleting book!"); 
             throw error;
         }
     },

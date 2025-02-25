@@ -7,7 +7,8 @@ import ManageBooks from "./pages/ManageBooks";
 import AddBook from "./pages/AddBook";
 import PrivateRoute from "./middleware/PrivateRoute";
 import { useEffect, useState } from "react";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -21,6 +22,7 @@ function App() {
     
     <>
       <Router>
+      <ToastContainer />
         <Routes>
           {/* Public Routes */}
           <Route path="/login" element={<SignIn setIsAuthenticated={setIsAuthenticated} />} />

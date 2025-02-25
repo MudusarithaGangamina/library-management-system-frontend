@@ -24,8 +24,7 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({ book, onClose ,refres
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleUpdateBook = async (id:number, newBook: BookDto) => { // Update book list
-    console.log("Updating book with data:", newBook);
+  const handleUpdateBook = async (id:number, newBook: BookDto) => { 
     const addedBook = await apiConnector.editBook(id, newBook);
     refreshBooks();
     return addedBook;
@@ -34,7 +33,7 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({ book, onClose ,refres
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    await handleUpdateBook(formData.id, formData); // Pass new book to parent component
+    await handleUpdateBook(formData.id, formData); 
     onClose();
 
   }
